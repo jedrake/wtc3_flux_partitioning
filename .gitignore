@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+/data
+/output
+
+tokenfile.txt
+wtc3_flux_partitioning.Rproj
