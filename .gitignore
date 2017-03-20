@@ -8,3 +8,9 @@
 
 tokenfile.txt
 wtc3_flux_partitioning.Rproj
+
+bag-info.txt
+bagit.txt
+data.zip
+manifest-md5.txt
+manifest-sha1.txt

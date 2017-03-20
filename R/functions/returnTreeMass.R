@@ -45,7 +45,7 @@ returnTreeMass <- function(plotson=F){
   treeMass1 <- merge(stem_branch_mass,leafMass,by=c("chamber","Date"))
   treeMass1$boleMass <- with(treeMass1,mass_wood+mass_bark)
   treeMass1$totMass <- rowSums(treeMass1[,c("boleMass","branchMass","leafMass")])
-  treeMass <-subset(treeMass1,select=c("chamber","Date","branchMass","boleMass","leafMass","totMass","SLA"))
+  treeMass <-subset(treeMass1,select=c("chamber","T_treatment","Water_treatment","Date","Measurement","Days_since_transplanting","branchMass","boleMass","leafMass","totMass","SLA"))
   
   print("Done. Returned treeMass")
   return(treeMass)

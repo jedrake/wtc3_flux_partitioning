@@ -75,8 +75,8 @@ returnd2h <- function(){
                     Water_treatment=c("drydown","control","drydown","drydown","control","drydown",
                                       "control","drydown","control","control","drydown","control"))
   
-  size_before <- subset(size7,Date<as.Date("2014-02-12"))
-  size_after <- subset(size7,Date>=as.Date("2014-02-12"))
+  size_before <- subset(size7,Date<as.Date("2014-02-4"))
+  size_after <- subset(size7,Date>=as.Date("2014-02-4"))
   size_after$Water_treatment <- NULL
   size_after2 <- merge(size_after,key,by="chamber")
   

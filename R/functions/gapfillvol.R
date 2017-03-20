@@ -39,9 +39,25 @@ gapfillvol <- function(dat){
   dat4$Index <- NULL
   dat4$Stem_number <- NULL
   
-  #- clean up for exporting
-  dat4_out <- dat4[,c("chamber","Date","T_treatment","Water_treatment","vol","vol_wood","vol_bark","mass_wood","mass_bark")]
   
-  return(dat4_out)
+  #- establish a treatment key for the Water_treatment variable
+  key <- data.frame(chamber=levels(dat4$chamber),
+                    Water_treatment=c("drydown","control","drydown","drydown","control","drydown",
+                                      "control","drydown","control","control","drydown","control"))
+  
+  size_before <- subset(dat4,Date<as.Date("2014-02-4"))
+  size_before$Water_treatment <- "control"
+  
+  size_after <- subset(dat4,Date>=as.Date("2014-02-4"))
+  size_after$Water_treatment <- NULL
+  size_after2 <- merge(size_after,key,by="chamber")
+  
+  #- combined dataframes from before and after the drought began
+  dat5 <- rbind(size_before,size_after2)
+  
+  #- clean up for exporting
+  dat5_out <- dat5[,c("chamber","Date","T_treatment","Water_treatment","Measurement","Days_since_transplanting","vol","vol_wood","vol_bark","mass_wood","mass_bark")]
+  
+  return(dat5_out)
   
 }

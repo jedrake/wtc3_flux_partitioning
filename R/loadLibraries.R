@@ -51,7 +51,7 @@ Library(car)
 Library(data.table)
 Library(shape)
 Library(reshape2)
-
+Library(calibrate)
 
 #- the following libraries aren't on CRAN, but can be installed from github or bitbucket with devtools
 if (require("devtools")==F) {install.packages("devtools")
@@ -83,5 +83,6 @@ downloadHIEv(searchHIEv("WTC_TEMP_CM_WOODDENSITY_20140528_L1.csv"),topath="data/
 downloadHIEv(searchHIEv("WTC_TEMP_CM_BRANCHCENSUS_20130910-20140516_L0_v1.csv"),topath="data/")
 downloadHIEv(searchHIEv("WTC_TEMP_CM_LAYERHEIGHT_20140519_L1.csv"),topath="data/")
 downloadHIEv(searchHIEv("WTC_TEMP_CM_HARVEST-CANOPY_20140526-20140528_L1_v1.csv"),topath="data/")
-
+downloadHIEv(searchHIEv("WTC_TEMP_CM_HARVEST-ROOTS_20140529-20140606_L1_v1.csv"),topath="data/")
+downloadHIEv(searchHIEv("WTC_TEMP_CM_BIOMASS-ROOT-CORES_20140529_L1_v1.csv"),topath="data/")
 

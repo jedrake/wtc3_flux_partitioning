@@ -8,6 +8,9 @@ partitionHourlyFluxCUE_arr <- function(dat.hr.gf=dat.hr.gf,Ea=57.69,lagdates,lea
   dat.hr.gf$FluxCO2_g <- with(dat.hr.gf,FluxCO2*60*60/1000*12.0107)
   dat.hr.gf$period <- ifelse(dat.hr.gf$PAR>2,"Day","Night")
   
+  #-- convert mol H2) s-1 to kg H2O hr-1
+  dat.hr.gf$FluxH2O_kg <- with(dat.hr.gf,FluxH2O*60*60/1000*18.015)
+  
   #-- partition day-time net C exchange into GPP and Ra, similar to how it is done in eddy-covariance.
   #-- create a series of dates
   date.vec <- seq.Date(from=min(dat.hr.gf$Date),to=max(dat.hr.gf$Date),by="day")
