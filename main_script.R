@@ -59,6 +59,9 @@ plot_fluxes_time_sum(cue.day)
 #- plot soil moisture and pre-dawn leaf water potential over time (Figure 3)
 plot_soil_moisture_LWPpd()
 
+#- plot the final harvest data and the root mass ratio
+plot_harvest_root_mass_ratio()
+
 #- plot GPP partitioning over time
 plot_partitioning_time(growth)
 #--------------------------------------------------------------------------------------------------
