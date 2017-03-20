@@ -53,6 +53,7 @@ Library(shape)
 Library(reshape2)
 Library(calibrate)
 Library(dplyr)
+Library(RColorBrewer)
 
 #- the following libraries aren't on CRAN, but can be installed from github or bitbucket with devtools
 if (require("devtools")==F) {install.packages("devtools")
