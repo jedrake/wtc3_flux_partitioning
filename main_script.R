@@ -56,6 +56,9 @@ plotsize()
 #- plot CO2 and H2O fluxes over time (Figure 2)
 plot_fluxes_time_sum(cue.day)
 
+#- plot soil moisture and pre-dawn leaf water potential over time (Figure 3)
+plot_soil_moisture_LWPpd()
+
 #- plot GPP partitioning over time
 plot_partitioning_time(growth)
 #--------------------------------------------------------------------------------------------------

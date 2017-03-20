@@ -3,8 +3,11 @@
 .RData
 .Ruserdata
 
+WTC_soilmet.rdata
+
 /data
 /output
+/met data
 
 tokenfile.txt
 wtc3_flux_partitioning.Rproj
