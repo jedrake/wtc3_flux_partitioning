@@ -3,7 +3,7 @@
 #- Load the libraries that do all of the actual work
 source("R/loadLibraries.R")
 
-#- Download the data from Drake 2016 New Phyt
+#- Download the data from Drake 2016 New Phyt, if it doesn't exist in the working directory.
 downloadNewPhytData()
 #-------------------------------------------------------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ downloadNewPhytData()
 
 #-------------------------------------------------------------------------------------------------------------------
 #- If fluxes have not been paritioned, partition net C fluxes into GPP and Ra.
-#  Otherwise, just read in the paritioned file. Partitioned fluxes are in dataframe "dat.hr.gf"
+#  Otherwise, just read in the paritioned file. Partitioned fluxes are in dataframe "dat.hr.gf".
 dat.hr.gf <- partitionHourlyWrapper()
 #-------------------------------------------------------------------------------------------------------------------
 
@@ -59,10 +59,13 @@ plot_fluxes_time_sum(cue.day)
 #- plot soil moisture and pre-dawn leaf water potential over time (Figure 3)
 plot_soil_moisture_LWPpd()
 
-#- plot the final harvest data and the root mass ratio
-plot_harvest_root_mass_ratio()
+#- plot soil moisture as measured by the nuetron probe method (Figure 4)
+plot_neutron_probe_data()
 
-#- plot GPP partitioning over time
+#- plot the final harvest data and the root mass ratio
+plot_harvest_root_mass_ratio() #  interaction for root-mass-ratio (p = 0.07)
+
+#- plot GPP partitioning over time. This needs work to be pretty.
 plot_partitioning_time(growth)
 #--------------------------------------------------------------------------------------------------
 

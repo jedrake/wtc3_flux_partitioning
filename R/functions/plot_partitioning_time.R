@@ -1,4 +1,4 @@
-plot_paritioning_time <- function(growth){
+plot_partitioning_time <- function(growth){
 
 
 

@@ -2,7 +2,7 @@
 #--------------------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------------------
 #- Function to get and plot the root-to-shoot ratios from the final harvest
-rootToShoot <- function(export=T){
+plot_harvest_root_mass_ratio <- function(export=T){
   #------------------------------------------------
   # read in the harvest data, compare to integrated chamber fluxes
   harvest <- read.csv("data/WTC_TEMP_CM_HARVEST-CANOPY_20140526-20140528_L1_v1.csv")
