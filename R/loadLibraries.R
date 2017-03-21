@@ -88,4 +88,5 @@ downloadHIEv(searchHIEv("WTC_TEMP_CM_HARVEST-CANOPY_20140526-20140528_L1_v1.csv"
 downloadHIEv(searchHIEv("WTC_TEMP_CM_HARVEST-ROOTS_20140529-20140606_L1_v1.csv"),topath="data/")
 downloadHIEv(searchHIEv("WTC_TEMP_CM_BIOMASS-ROOT-CORES_20140529_L1_v1.csv"),topath="data/")
 downloadHIEv(searchHIEv("WTC_TEMP_CM_WATERPOTENTIAL-DIURNALS_20140214-20140514_R.csv"),topath="data")
+downloadHIEv(searchHIEv("WTC_TEMP_CM_TDRVWC_2013-03-01_2014-05-25_L1.csv"),topath="data")
 
