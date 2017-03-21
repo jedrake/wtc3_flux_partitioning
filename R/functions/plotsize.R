@@ -5,6 +5,17 @@
 plotsize <- function(output=T){
   
   
+  
+  #------------------------------------------------------------------------------------------------------------
+  # #- get initial tree size 
+  size <- read.csv("data/WTC_TEMP_CM_TREE-HEIGHT-DIAMETER_20121120-20140527_L1_V2.CSV")
+  size$chamber_n <- as.numeric(substr(size$chamber,start=2,stop=3))
+  size$DateTime <- as.Date(size$DateTime)
+  
+  summaryBy(Plant_height+diam_15~T_treatment,data=subset(size2,DateTime==as.Date("2012-12-12")),FUN=c(mean,se))
+  #------------------------------------------------------------------------------------------------------------
+  
+  
     #- Get the three direct observations of leaf area. They happened on 9 Sept 2013, 10 Feb 2014, and
     #    during the harvest at ~25 May 2014.
     treeMass <- read.csv("data/WTC_TEMP_CM_WTCFLUX_20130914-20140526_L2_V2.csv")
@@ -122,7 +133,7 @@ plotsize <- function(output=T){
   
   
   
-  if(export==T) dev.copy2pdf(file="output/treeSize.pdf")
+  if(output==T) dev.copy2pdf(file="output/treeSize.pdf")
 }
 #--------------------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------------------

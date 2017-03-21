@@ -22,6 +22,8 @@ dat.hr.gf <- partitionHourlyWrapper()
 treeMass <- returnTreeMass()
 treeMassFlux <- merge(dat.hr.gf,treeMass,by=c("chamber","Date","T_treatment","Water_treatment"))
 
+
+
 #- create daily sums of GPP, Ra, and CUE
 cue.list <- returnCUEdaily(treeMassFlux)
 cue.day <- cue.list[[1]]
@@ -68,11 +70,38 @@ plot_harvest_root_mass_ratio() #  interaction for root-mass-ratio (p = 0.07)
 #- plot fluxes of GPP, NPPa, Ra, and residual  over time. 
 plot_flux_terms_time(growth)
 
-#- plot GPP partitioning over time. This needs work to be pretty.
+#- plot GPP partitioning over time. 
 plot_partitioning_time(growth)
+
+#- plot respiration, in growth vs. maintenence framework of Penning and DeVries. 
+plot_respiration_growth_maintenence(growth)
 #--------------------------------------------------------------------------------------------------
 
 
 
 
+
+
+
+#--------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
+#- Small calculations, needed throughout the text
+#--------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------
+
+#- tree size upon floor installation
+summaryBy(leafArea~T_treatment,data=subset(treeMassFlux,Date==as.Date("2013-09-14")))
+
+#- get an estimate of d2h for every day of the experiment by interpolation
+size <- returnd2h()
+summaryBy(diam+Plant_height~T_treatment,data=subset(size,Date==as.Date("2013-09-14")))
+
+
+#- get an estimate of volume and mass for wood and bark for each measurement day
+print("Calculating stem volume")
+vol <- getvol()
+#- interpolate volume for every day of the experiment
+print("Interpolating stem volume")
+vol.all <- gapfillvol(vol)
+summaryBy(vol~T_treatment,data=subset(vol.all,Date==as.Date("2013-09-14")))
 
