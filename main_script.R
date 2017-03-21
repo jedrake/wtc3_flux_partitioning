@@ -65,6 +65,9 @@ plot_neutron_probe_data()
 #- plot the final harvest data and the root mass ratio
 plot_harvest_root_mass_ratio() #  interaction for root-mass-ratio (p = 0.07)
 
+#- plot fluxes of GPP, NPPa, Ra, and residual  over time. 
+plot_flux_terms_time(growth)
+
 #- plot GPP partitioning over time. This needs work to be pretty.
 plot_partitioning_time(growth)
 #--------------------------------------------------------------------------------------------------
