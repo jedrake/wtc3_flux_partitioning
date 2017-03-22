@@ -25,7 +25,7 @@ plot_soil_moisture_LWPpd <- function(){
   
   #--------------------------------------------------------------------------------------------------
   #--------------------------------------------------------------------------------------------------
-  #- download the leaf water potential data, add to plot
+  #- read in the leaf water potential data, add to plot
   lwp <- read.csv("data/WTC_TEMP_CM_WATERPOTENTIAL-PREDAWN-MIDDAY_20130515-20140424_L2.csv")
   lwp$Date <- as.Date(lwp$date,format="%d/%m/%Y")
   lwp$LWPpd <- -0.1*lwp$predawn
@@ -33,6 +33,11 @@ plot_soil_moisture_LWPpd <- function(){
   
   #average by chamber and date
   lwp2 <- summaryBy(LWPpd~Date+T_treatment+Water_treatment+chamber,data=lwp,FUN=mean,keep.names=T,na.rm=T)
+  
+  #- average across the drought period
+  lwp.chamber <- summaryBy(LWPpd~Water_treatment+chamber,na.rm=T,
+                           data=subset(lwp2,Date>=as.Date("2014-2-20") & Date<=as.Date("2014-4-2")),FUN=mean,keep.names=T)
+  lwp.mean <- summaryBy(LWPpd~Water_treatment,data=lwp.chamber,FUN=c(mean,se))
   
   #average by treatments
   lwp3 <- summaryBy(LWPpd~Date+T_treatment+Water_treatment,data=subset(lwp2,Date>as.Date("2012-01-01")),FUN=c(mean,se),na.rm=T)

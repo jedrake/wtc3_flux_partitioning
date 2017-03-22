@@ -2,6 +2,35 @@ plot_partitioning_time <- function(growth){
   
   
   
+  
+  #--------------------------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------------------------
+  #- Derive averages to present in results
+  part.chamber.pre <-  summaryBy(CUEa+Hloss+RtoA+residtoGPP~chamber+T_treatment,
+                                 data=subset(growth, Date < as.Date("2014-2-1")),na.rm=T,FUN=c(mean),keep.names=T)
+  part.trt.pre <-  summaryBy(CUEa+Hloss+RtoA+residtoGPP~T_treatment,
+                             data=part.chamber.pre,na.rm=T,FUN=c(mean,se),keep.names=F)
+  
+  part.chamber.dry <-  summaryBy(CUEa+Hloss+RtoA+residtoGPP~chamber+Water_treatment,
+                                 data=subset(growth, Date > as.Date("2014-2-1")),na.rm=T,FUN=c(mean),keep.names=T)
+  part.trt.dry <-  summaryBy(CUEa+Hloss+RtoA+residtoGPP~Water_treatment,
+                             data=part.chamber.dry,na.rm=T,FUN=c(mean,se),keep.names=F)
+  
+  part.chamber.all <-  summaryBy(CUEa+Hloss+RtoA+residtoGPP~chamber+T_treatment,
+                                 data=growth,na.rm=T,FUN=c(mean),keep.names=T)
+  part.trt.all <-  summaryBy(CUEa+Hloss+RtoA+residtoGPP~T_treatment,
+                             data=part.chamber.all,na.rm=T,FUN=c(mean,se),keep.names=F)
+  
+  grand.means <-  summaryBy(CUEa+Hloss+RtoA+residtoGPP~1,
+                            data=growth,na.rm=T,FUN=c(mean,se),keep.names=F)
+  
+  #--------------------------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------------------------
+  
+  
+  
+  
+  
   #--------------------------------------------------------------------------------------------------
   #--------------------------------------------------------------------------------------------------
   #- Plot partitioning over time

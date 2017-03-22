@@ -3,6 +3,31 @@ plot_flux_terms_time <- function(growth){
   
   #--------------------------------------------------------------------------------------------------
   #--------------------------------------------------------------------------------------------------
+  #- Derive averages to present in results
+  part.chamber.pre <-  summaryBy(GPP+dMass_c+Ra+resid~chamber+T_treatment,
+                                 data=subset(growth, Date < as.Date("2014-2-1")),na.rm=T,FUN=c(mean),keep.names=T)
+  part.trt.pre <-  summaryBy(GPP+dMass_c+Ra+resid~T_treatment,
+                                 data=part.chamber.pre,na.rm=T,FUN=c(mean,se),keep.names=F)
+  
+  part.chamber.dry <-  summaryBy(GPP+dMass_c+Ra+resid~chamber+Water_treatment,
+                                 data=subset(growth, Date > as.Date("2014-2-1")),na.rm=T,FUN=c(mean),keep.names=T)
+  part.trt.dry <-  summaryBy(GPP+dMass_c+Ra+resid~Water_treatment,
+                             data=part.chamber.dry,na.rm=T,FUN=c(mean,se),keep.names=F)
+  
+  part.chamber.all <-  summaryBy(GPP+dMass_c+Ra+resid~chamber+T_treatment,
+                                 data=growth,na.rm=T,FUN=c(mean),keep.names=T)
+  part.trt.all <-  summaryBy(GPP+dMass_c+Ra+resid~T_treatment,
+                             data=part.chamber.all,na.rm=T,FUN=c(mean,se),keep.names=F)
+  #--------------------------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------------------------
+  
+  
+  
+  
+  
+  
+  #--------------------------------------------------------------------------------------------------
+  #--------------------------------------------------------------------------------------------------
   #- Plot fluxes over time
   
   

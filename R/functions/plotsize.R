@@ -16,25 +16,28 @@ plotsize <- function(output=T){
   #------------------------------------------------------------------------------------------------------------
   
   
-    #- Get the three direct observations of leaf area. They happened on 9 Sept 2013, 10 Feb 2014, and
-    #    during the harvest at ~25 May 2014.
-    treeMass <- read.csv("data/WTC_TEMP_CM_WTCFLUX_20130914-20140526_L2_V2.csv")
-    treeMass.sub <- subset(treeMass,as.Date(DateTime) %in% as.Date(c("2013-09-14","2014-02-10","2014-05-27")))
-    treeMass.sub$Date <- as.Date(treeMass.sub$DateTime)
-    leafArea <- summaryBy(leafArea~Date+chamber+T_treatment+Water_treatment,data=treeMass.sub,FUN=c(mean),keep.names=T)
-    leafArea1 <- summaryBy(leafArea~Date+T_treatment+Water_treatment,data=leafArea,FUN=c(mean,se))
-    
-    #-------------------
-    #- get an estimate of volume and mass for wood and bark for each measurement day
-    vol <- getvol()
-    vol$diam <- vol$diam/10      # convert to cm
-    vol$height <- vol$height/100 # convert to m
-    vol$vol <- vol$vol/10000     # convert to m3
-    
-    size.m <- summaryBy(diam+height+vol~DateTime+T_treatment+Water_treatment,
-                        data=subset(vol,Days_since_transplanting>0),FUN=c(mean,se))
-    
-    
+  
+  
+  #------------------------------------------------------------------------------------------------------------
+  #- Get the three direct observations of leaf area. They happened on 9 Sept 2013, 10 Feb 2014, and
+  #    during the harvest at ~25 May 2014.
+  treeMass <- read.csv("data/WTC_TEMP_CM_WTCFLUX_20130914-20140526_L2_V2.csv")
+  treeMass.sub <- subset(treeMass,as.Date(DateTime) %in% as.Date(c("2013-09-14","2014-02-10","2014-05-27")))
+  treeMass.sub$Date <- as.Date(treeMass.sub$DateTime)
+  leafArea <- summaryBy(leafArea~Date+chamber+T_treatment+Water_treatment,data=treeMass.sub,FUN=c(mean),keep.names=T)
+  leafArea1 <- summaryBy(leafArea~Date+T_treatment+Water_treatment,data=leafArea,FUN=c(mean,se))
+  
+  #-------------------
+  #- get an estimate of volume and mass for wood and bark for each measurement day
+  vol <- getvol()
+  vol$diam <- vol$diam/10      # convert to cm
+  vol$height <- vol$height/100 # convert to m
+  vol$vol <- vol$vol/10000     # convert to m3
+  
+  size.m <- summaryBy(diam+height+vol~DateTime+T_treatment+Water_treatment,
+                      data=subset(vol,Days_since_transplanting>0),FUN=c(mean,se))
+  
+  
   
   windows(40,40);par(mfrow=c(2,2),mar=c(0,5.5,0,3),oma=c(5,2,2,0),las=1,cex.axis=1.5)
   palette(c("black","red"))
