@@ -105,7 +105,7 @@ plot_soil_moisture_LWPpd <- function(){
   for (i in 1:length(dat1.list)){
     dat1 <- dat1.list[[i]]
     #plot surface
-    adderrorbars(x=dat1$date,y=dat1$VW_Avg.1..mean,SE=dat1$VW_Avg.1..se,direction="updown",
+    adderrorbars(x=dat1$date,y=dat1$VW_Avg.1..mean,SE=dat1$VW_Avg.1..se,direction="updown",barlen=0,
                  col=cols[i],add=T)
     abline(h=0.05,lty=2,lwd=2)
     points(VW_Avg.1..mean~date,data=dat1,pch=21,col=cols[i],bg=bgcols[i],add=T,cex=1.4,type="b",lty=i)
@@ -125,7 +125,7 @@ plot_soil_moisture_LWPpd <- function(){
   for (i in 1:length(dat1.list)){
     dat1 <- dat1.list[[i]]
     #plot middle depth
-    adderrorbars(x=dat1$date,y=dat1$VW_Avg.2..mean,SE=dat1$VW_Avg.2..se,direction="updown",
+    adderrorbars(x=dat1$date,y=dat1$VW_Avg.2..mean,SE=dat1$VW_Avg.2..se,direction="updown",barlen=0,
                  col=cols[i],add=T)
     abline(h=0.05,lty=2,lwd=2)
     
@@ -145,7 +145,7 @@ plot_soil_moisture_LWPpd <- function(){
   for (i in 1:length(dat1.list)){
     dat1 <- dat1.list[[i]]
     #plot deepest depth
-    adderrorbars(x=dat1$date,y=dat1$VW_Avg.3..mean,SE=dat1$VW_Avg.3..se,direction="updown",
+    adderrorbars(x=dat1$date,y=dat1$VW_Avg.3..mean,SE=dat1$VW_Avg.3..se,direction="updown",barlen=0,
                  col=cols[i],add=T)
     abline(h=0.05,lty=2,lwd=2)
     
@@ -172,7 +172,7 @@ plot_soil_moisture_LWPpd <- function(){
   for (i in 1:length(lwp.list)){
     dat1 <- lwp.list[[i]]
     
-    adderrorbars(x=dat1$Date,y=dat1$LWPpd.mean,SE=dat1$LWPpd.se,direction="updown",
+    adderrorbars(x=dat1$Date,y=dat1$LWPpd.mean,SE=dat1$LWPpd.se,direction="updown",barlen=0,
                  col=cols[i],add=T)
     abline(h=0.05,lty=2,lwd=2)
     

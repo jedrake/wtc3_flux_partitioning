@@ -61,7 +61,7 @@ plot_flux_terms_time <- function(growth){
   
   #---------- GPP
   plotBy(GPP.mean~Date|T_treatment,data=subset(part,Water_treatment=="control"),type="l",lwd=2,
-         ylim=c(0,1200),legend=F,axes=F,ylab="",xlab="")
+         ylim=c(0,1000),legend=F,axes=F,ylab="",xlab="")
   
   #- gussy up the graph
   magaxis(side=c(2),labels=c(1),las=1,frame.plot=T,cex.axis=1.2)
@@ -82,8 +82,8 @@ plot_flux_terms_time <- function(growth){
          add=T,legend=F)
   plotBy(GPP.mean~Date|T_treatment,data=subset(part,Water_treatment=="drydown"),col=palette()[3:4],
          type="l",lwd=3,add=T,legend=F)
-  legend("topleft",legend=c("A-Wet","W-Wet","A-Dry","W-Dry"),fill=palette()[1:4],seg.len=3,cex=1.2,bty="n")
-  legend("topright",letters[1],bty="n",cex=1.5)
+  legend("bottomright",legend=c("A-Wet","W-Wet","A-Dry","W-Dry"),fill=palette()[1:4],seg.len=3,cex=1.2,bty="n")
+  legend("topleft",letters[1],bty="n",cex=1.5)
   
   
   
@@ -111,7 +111,7 @@ plot_flux_terms_time <- function(growth){
          ylim=c(0,100),add=T,legend=F)
   plotBy(dMass_c.mean~Date|T_treatment,data=subset(part,Water_treatment=="drydown"),col=palette()[3:4],
          type="l",lwd=3,add=T,legend=F)
-  legend("topright",letters[2],bty="n",cex=1.5)
+  legend("topleft",letters[2],bty="n",cex=1.5)
   
   
   
@@ -138,7 +138,7 @@ plot_flux_terms_time <- function(growth){
          ylim=c(0,100),add=T,legend=F)
   plotBy(Ra.mean~Date|T_treatment,data=subset(part,Water_treatment=="drydown"),col=palette()[3:4],
          type="l",lwd=3,add=T,legend=F)
-  legend("topright",letters[3],bty="n",cex=1.5)
+  legend("topleft",letters[3],bty="n",cex=1.5)
   
   
   
@@ -165,7 +165,7 @@ plot_flux_terms_time <- function(growth){
          ylim=c(0,100),add=T,legend=F)
   plotBy(resid.mean~Date|T_treatment,data=subset(part,Water_treatment=="drydown"),col=palette()[3:4],
          type="l",lwd=3,add=T,legend=F)
-  legend("topright",letters[4],bty="n",cex=1.5)
+  legend("topleft",letters[4],bty="n",cex=1.5)
   
   
   

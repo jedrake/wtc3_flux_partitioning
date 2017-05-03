@@ -12,7 +12,7 @@ plot_respiration_growth_maintenence <- function(growth){
   gmr$logx <- log10(gmr$RGR/1000)
   
   model1 <- lme(RtoW~T_treatment+RGR+RGR:T_treatment,random=~1|chamber,data=gmr) # slopes not different
-  model2 <- lme(RtoW~T_treatment,random=~1|chamber,data=gmr)                # intercepts are not different
+  model2 <- lme(RtoW~T_treatment,random=~1|chamber,data=gmr)                     # intercepts are not different
   model3 <- lme(RtoW~RGR,data=gmr,random=~1|chamber)
   model4 <- lm(RtoW~RGR,data=gmr)
   
