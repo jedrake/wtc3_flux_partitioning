@@ -39,6 +39,31 @@ plotsize <- function(output=T){
   
   
   
+  
+  
+  
+  
+  #------------------------------------------------------------------------------------------------------------
+  #- statistical analysis of volume increment during the drought period
+  vol2 <- subset(vol,Days_since_transplanting>340)
+  
+  #- calculate volume increment (note, data are already sorted by chamber). NA fill every eigth value
+  vol2$dvol <- c(diff(vol2$vol),NA)
+  tonafill <- which(vol2$Measurement==40)
+  vol2$dvol[tonafill] <- NA
+  
+  vol2$Datefac <- factor(vol2$DateTime)
+  lm.dvol <- lme(dvol~Datefac*T_treatment*Water_treatment,random=(~1|chamber),data=subset(vol2,!is.na(dvol)))
+  anova(lm.dvol,test="marginal")
+  
+  #- final volume has no statistical differences
+  lm1 <- lm(vol~T_treatment*Water_treatment,data=subset(vol,Days_since_transplanting==441))
+  Anova(lm1,test="F")
+  anova(lm1,test="marginal")
+  #------------------------------------------------------------------------------------------------------------
+  
+  
+  
   windows(40,40);par(mfrow=c(2,2),mar=c(0,5.5,0,3),oma=c(5,2,2,0),las=1,cex.axis=1.5)
   palette(c("#377EB8","#E41A1C"))
   
