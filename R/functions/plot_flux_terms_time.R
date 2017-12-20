@@ -95,7 +95,7 @@ plot_flux_terms_time <- function(growth){
   #- gussy up the graph
   magaxis(side=c(2),labels=c(1),las=1,frame.plot=T,cex.axis=1.2)
   axis.Date(side=1,at=seq.Date(from=as.Date("2013-9-1"),to=as.Date("2014-6-1"),by="month"),tcl=0.5,cex.axis=1.2,labels=F)
-  title(ylab="NPPa",outer=T,adj=0.75,cex.lab=1.5,line=-23)
+  title(ylab="NPPa",outer=T,adj=0.75,cex.lab=1.5,line=-28)
   
   #- add polygons showing SE
   polygon(x = c(part.ac$Date, rev(part.ac$Date)), 
@@ -149,7 +149,7 @@ plot_flux_terms_time <- function(growth){
   #- gussy up the graph
   magaxis(side=c(2),labels=c(1),las=1,frame.plot=T,cex.axis=1.2)
   axis.Date(side=1,at=seq.Date(from=as.Date("2013-9-1"),to=as.Date("2014-6-1"),by="month"),tcl=0.5,cex.axis=1.2,labels=T)
-  title(ylab="Residual",outer=T,adj=0.25,cex.lab=1.5,line=-23)
+  title(ylab="Residual",outer=T,adj=0.25,cex.lab=1.5,line=-28)
   
   #- add polygons showing SE
   polygon(x = c(part.ac$Date, rev(part.ac$Date)), 
