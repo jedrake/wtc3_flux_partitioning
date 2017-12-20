@@ -131,7 +131,7 @@ plot_fluxes_time_sum <- function(cue.day){
   #- add experiment-wise sums
   xvals <- graphics::barplot(c(cue.sums.trt$Hloss.mean,cue.sums.dd.trt$Hloss.mean),ylim=c(0,2000),
                              col=c(palette()[1:2],palette()[1:4]),las=2,
-                             names.arg=c("A-Wet","E-Wet","A-Wet","E-Wet","A-Dry","E-Dry"))
+                             names.arg=c("A-Wet","W-Wet","A-Wet","W-Wet","A-Dry","W-Dry"))
   abline(v=2.5,lty=2)
   adderrorbars(x=xvals,y=c(cue.sums.trt$Hloss.mean,cue.sums.dd.trt$Hloss.mean),
                SE=c(cue.sums.trt$Hloss.se,cue.sums.dd.trt$Hloss.se),direction="updown")
