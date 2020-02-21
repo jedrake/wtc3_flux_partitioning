@@ -7,8 +7,8 @@
 plot_respiration_growth_maintenence <- function(growth){
   gmr <- growth
   
-  gmr$RtoW <- with(gmr,Ra/(totMass*0.47))
-  gmr$RtoG <- with(gmr,Ra/(dMass_c))
+  gmr$RtoW <- with(gmr,Ra/14/(totMass*0.47))
+  gmr$RtoG <- with(gmr,Ra/14/(dMass_c))
   
   gmr$logy <- log10(gmr$RtoW)
   gmr$logx <- log10(gmr$RGR/1000) # convert to g from mg
@@ -51,11 +51,13 @@ plot_respiration_growth_maintenence <- function(growth){
   #--- Resp vs. R G R
   #- on normal scale
   windows(20,20)
-  par(mar=c(6,6,1,1),cex.lab=1.8,cex.axis=1.2,las=1)
-  plotBy(RtoW~RGR|T_treatment,data=subset(gmr,Water_treatment=="control"),ylim=c(0,0.18),xlim=c(0,17),pch=16,
+  par(mar=c(6,8,1,1),cex.lab=1.8,cex.axis=1.2,las=1)
+  plotBy(RtoW~RGR|T_treatment,data=subset(gmr,Water_treatment=="control"),ylim=c(0,0.015),xlim=c(0,17),pch=16,
          legend=F,cex=1.2,
-         ylab=expression(Respiration~per~unit~tree~C~(gC~gC^-1~d^-1)),
+         ylab="",
          xlab=expression(Relative~growth~rate~(mgC~gC^-1~d^-1)))
+  title(ylab=expression(Respiration~per~unit~tree~C~(gC~gC^-1~d^-1)),line=4)
+  
   plotBy(RtoW~RGR|T_treatment,data=subset(gmr,Water_treatment=="drydown"),ylim=c(0,0.2),xlim=c(0,20),pch=1,
          legend=F,add=T,cex=1.2)
   legend("topleft",pch=c(16,16,1,1),col=palette()[1:2],
@@ -108,28 +110,28 @@ plot_respiration_growth_maintenence <- function(growth){
   predamb <- as.data.frame(predict(model_amb, amb_dfr, interval = "confidence"))
   predele <- as.data.frame(predict(model_ele, ele_dfr, interval = "confidence"))
   
-  windows(20,20)
-  par(mar=c(6,6,1,1),cex.lab=1.8,cex.axis=1.2,las=1)
-  plotBy(logy~logx|T_treatment,data=subset(gmr,Water_treatment=="control"),pch=16,
-         legend=F,cex=1.2,xlim=c(-3,-1.5),ylim=c(-1.8,-0.6),
-         ylab=expression(log[10]~(Respiration~per~unit~tree~C~(gC~gC^-1~d^-1))),
-         xlab=expression(log[10]~(Relative~growth~rate~(gC~gC^-1~d^-1))))
-  plotBy(logy~logx|T_treatment,data=subset(gmr,Water_treatment=="drydown"),pch=1,
-          legend=F,add=T,cex=1.2)
-  legend("topleft",pch=c(16,16,1,1),col=palette()[1:2],
-          legend=c("A-Con","W-Con","A-Dry","W-Dry"),bty="n",cex=1.2)
-  
+  # windows(20,20)
+  # par(mar=c(6,6,1,1),cex.lab=1.8,cex.axis=1.2,las=1)
+  # plotBy(logy~logx|T_treatment,data=subset(gmr,Water_treatment=="control"),pch=16,
+  #        legend=F,cex=1.2,xlim=c(-3,-1.5),ylim=c(-1.8,-0.6),
+  #        ylab=expression(log[10]~(Respiration~per~unit~tree~C~(gC~gC^-1~d^-1))),
+  #        xlab=expression(log[10]~(Relative~growth~rate~(gC~gC^-1~d^-1))))
+  # plotBy(logy~logx|T_treatment,data=subset(gmr,Water_treatment=="drydown"),pch=1,
+  #         legend=F,add=T,cex=1.2)
+  # legend("topleft",pch=c(16,16,1,1),col=palette()[1:2],
+  #         legend=c("A-Con","W-Con","A-Dry","W-Dry"),bty="n",cex=1.2)
+  # 
   # Add the lines; the fit and lower and upper confidence intervals.
-  lines(xval, predamb$fit, col = palette()[1], lwd = 2)
-  lines(xval, predamb$lwr, col = palette()[1], lwd = 1, lty = 3)
-  lines(xval, predamb$upr, col = palette()[1], lwd = 1, lty = 3)
-  
-  lines(xval, predele$fit, col = palette()[2], lwd = 2)
-  lines(xval, predele$lwr, col = palette()[2], lwd = 1, lty = 3)
-  lines(xval, predele$upr, col = palette()[2], lwd = 1, lty = 3)
-  
-  dev.copy2pdf(file="output/R_growth_maintenance_logscale.pdf")
-  
+  # lines(xval, predamb$fit, col = palette()[1], lwd = 2)
+  # lines(xval, predamb$lwr, col = palette()[1], lwd = 1, lty = 3)
+  # lines(xval, predamb$upr, col = palette()[1], lwd = 1, lty = 3)
+  # 
+  # lines(xval, predele$fit, col = palette()[2], lwd = 2)
+  # lines(xval, predele$lwr, col = palette()[2], lwd = 1, lty = 3)
+  # lines(xval, predele$upr, col = palette()[2], lwd = 1, lty = 3)
+  # 
+  # dev.copy2pdf(file="output/R_growth_maintenance_logscale.pdf")
+  # 
   
   
   #-------------------------------------------------------------------
@@ -144,6 +146,7 @@ plot_respiration_growth_maintenence <- function(growth){
   library(visreg)
   amthor3 <- lmer(Ra~dMass_c+dMass_c:T_treatment+totMass_c+totMass_c:T_treatment+(1|chamber),data=gmr)
   anova(amthor3)
+  coef(amthor3)
   confint(amthor3)
   
   #- refit amthor model for treatments separately
@@ -154,7 +157,8 @@ plot_respiration_growth_maintenence <- function(growth){
   confint(amthor3.ele)
   summary(amthor3.ele)
   
-  amthor4 <- lmer(Ra~dMass_c+totMass_c+(1|chamber),data=gmr)
+  # this is the version used to produce the parameters in Table 1.
+    amthor4 <- lmer(Ra~dMass_c+totMass_c+(1|chamber),data=gmr)
   coef(amthor4)
   visreg(amthor2,"totMass_c","dMass_c",overlay=T)
 }
