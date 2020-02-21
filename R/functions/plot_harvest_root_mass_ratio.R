@@ -102,7 +102,7 @@ plot_harvest_root_mass_ratio <- function(export=T){
     windows(60,40);par(mfrow=c(1,2),mar=c(6,8,2,1),cex.lab=2)
     
     #- make the stacked barchart of final mass
-    xvals <- barplot(data,las=1,names.arg=c("A-Wet","A-Dry","W-Wet","W-Dry"),ylim=c(0,20000),xlab="Treatment",
+    xvals <- barplot(data,las=1,names.arg=c("A-Con","A-Dry","W-Con","W-Dry"),ylim=c(0,20000),xlab="Treatment",
                      col=c("black","grey","brown","orange","forestgreen"),cex.names=1.3,cex.axis=1.3)
     box()
     title(ylab=expression(Final~mass~(g)),line=4)
@@ -113,7 +113,7 @@ plot_harvest_root_mass_ratio <- function(export=T){
     palette(c(rev(brewer.pal(4,"Set1")[1:2]),brewer.pal(4,"Set1")[3:4]))
     
     #- plot root:shoot ratio
-    boxplot(root_mass_ratio~Water_treatment+T_treatment,data=treemass,las=1,names=c("A-Wet","A-Dry","W-Wet","W-Dry"),
+    boxplot(root_mass_ratio~Water_treatment+T_treatment,data=treemass,las=1,names=c("A-Con","A-Dry","W-Con","W-Dry"),
             xlab="Treatment",ylim=c(0.15,0.35),
             ylab="",cex.axis=1.3,col=palette()[c(1,3,2,4)])
     title(ylab="Root mass ratio",line=4)

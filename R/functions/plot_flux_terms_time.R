@@ -82,7 +82,7 @@ plot_flux_terms_time <- function(growth){
          add=T,legend=F)
   plotBy(GPP.mean~Date|T_treatment,data=subset(part,Water_treatment=="drydown"),col=palette()[3:4],
          type="l",lwd=3,add=T,legend=F)
-  legend("bottomright",legend=c("A-Wet","W-Wet","A-Dry","W-Dry"),fill=palette()[1:4],seg.len=3,cex=1.2,bty="n")
+  legend("bottomright",legend=c("A-Con","W-Con","A-Dry","W-Dry"),fill=palette()[1:4],seg.len=3,cex=1.2,bty="n")
   legend("topleft",letters[1],bty="n",cex=1.5)
   
   

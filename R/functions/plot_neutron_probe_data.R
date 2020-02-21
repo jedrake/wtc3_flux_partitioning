@@ -127,7 +127,7 @@ plot_neutron_probe_data <- function(){
                direction="updown",col=c("blue","red"),barlen=0)
   
   abline(h=0,lty=3)
-  legend("topright",legend=c("A-Wet","A-Dry","W-Wet","W-Dry"),ncol=2,pch=c(21),
+  legend("topright",legend=c("A-Con","A-Dry","W-Con","W-Dry"),ncol=2,pch=c(21),
          seg.len=3,bty="n",lwd=2,pt.lwd=1,col=c("blue","blue","red","red"),
          pt.bg=c("blue","white","red","white"),pt.cex=1.5,cex=1.2,lty=c(1,2,1,2))
 }

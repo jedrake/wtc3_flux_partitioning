@@ -58,22 +58,23 @@ plotsize()
 #- plot CO2 and H2O fluxes over time (Figure 2)
 plot_fluxes_time_sum(cue.day)
 
-#- plot soil moisture and pre-dawn leaf water potential over time (Figure 3)
-plot_soil_moisture_LWPpd()
-
-#- plot soil moisture as measured by the nuetron probe method (Figure 4)
-plot_neutron_probe_data()
-
-#- plot the final harvest data and the root mass ratio
+#- plot the final harvest data and the root mass ratio (Figure 3)
 plot_harvest_root_mass_ratio() #  interaction for root-mass-ratio (p = 0.07)
 
-#- plot fluxes of GPP, NPPa, Ra, and residual  over time. 
+#- plot soil moisture and pre-dawn leaf water potential over time (Figure 4)
+plot_soil_moisture_LWPpd()
+
+#- plot soil moisture as measured by the nuetron probe method (Figure S1)
+plot_neutron_probe_data()
+
+
+#- plot fluxes of GPP, NPPa, Ra, and residual  over time. (Figure 5)
 plot_flux_terms_time(growth)
 
-#- plot GPP partitioning over time. 
+#- plot GPP partitioning over time. (Figures 6-7)
 plot_partitioning_time(growth)
 
-#- plot respiration, in growth vs. maintenence framework of Penning and DeVries. 
+#- plot respiration, in growth vs. maintenence framework of Penning and DeVries. (Figure 8)
 plot_respiration_growth_maintenence(growth)
 #--------------------------------------------------------------------------------------------------
 

@@ -101,7 +101,7 @@ plot_partitioning_time <- function(growth){
          ylim=c(0,100),add=T,legend=F)
   plotBy(CUEa.mean~Date|T_treatment,data=subset(part,Water_treatment=="drydown"),col=palette()[3:4],
          type="l",lwd=3,add=T,legend=F)
-  legend("bottomleft",legend=c("A-Wet","W-Wet","A-Dry","W-Dry"),fill=palette()[1:4],seg.len=3,cex=1.5)
+  legend("bottomleft",legend=c("A-Con","W-Con","A-Dry","W-Dry"),fill=palette()[1:4],seg.len=3,cex=1.5)
   legend("topright",letters[1],bty="n",cex=1.5)
   
   #- add experiment-wise boxplots
@@ -112,7 +112,7 @@ plot_partitioning_time <- function(growth){
   #- add experiment-wise means
   xvals <- graphics::barplot(c(cue.sums.trt$CUEa.mean,cue.sums.dd.trt$CUEa.mean),ylim=c(0,0.6),
                              col=c(palette()[1:2],palette()[1:4]),las=2,
-                             names.arg=c("A-Wet","W-Wet","A-Wet","W-Wet","A-Dry","W-Dry"))
+                             names.arg=c("A-Con","W-Con","A-Con","W-Con","A-Dry","W-Dry"))
   abline(v=2.5,lty=2)
   adderrorbars(x=xvals,y=c(cue.sums.trt$CUEa.mean,cue.sums.dd.trt$CUEa.mean),
                SE=c(cue.sums.trt$CUEa.se,cue.sums.dd.trt$CUEa.se),direction="updown")
@@ -153,7 +153,7 @@ plot_partitioning_time <- function(growth){
   #- add experiment-wise means
   xvals <- graphics::barplot(c(cue.sums.trt$RtoA.mean,cue.sums.dd.trt$RtoA.mean),ylim=c(0,0.6),
                              col=c(palette()[1:2],palette()[1:4]),las=2,
-                             names.arg=c("A-Wet","W-Wet","A-Wet","W-Wet","A-Dry","W-Dry"))
+                             names.arg=c("A-Con","W-Con","A-Con","W-Con","A-Dry","W-Dry"))
   abline(v=2.5,lty=2)
   adderrorbars(x=xvals,y=c(cue.sums.trt$RtoA.mean,cue.sums.dd.trt$RtoA.mean),
                SE=c(cue.sums.trt$RtoA.se,cue.sums.dd.trt$RtoA.se),direction="updown")
@@ -198,7 +198,7 @@ plot_partitioning_time <- function(growth){
   #- add experiment-wise means
   xvals <- graphics::barplot(c(cue.sums.trt$residtoGPP.mean,cue.sums.dd.trt$residtoGPP.mean),ylim=c(0,0.6),
                              col=c(palette()[1:2],palette()[1:4]),las=2,
-                             names.arg=c("A-Wet","W-Wet","A-Wet","W-Wet","A-Dry","W-Dry"))
+                             names.arg=c("A-Con","W-Con","A-Con","W-Con","A-Dry","W-Dry"))
   abline(v=2.5,lty=2)
   adderrorbars(x=xvals,y=c(cue.sums.trt$residtoGPP.mean,cue.sums.dd.trt$residtoGPP.mean),
                SE=c(cue.sums.trt$residtoGPP.se,cue.sums.dd.trt$residtoGPP.se),direction="updown")
@@ -222,14 +222,14 @@ plot_partitioning_time <- function(growth){
   layout(matrix(c(1,2,3), 3, 1, byrow = TRUE), 
          widths=c(2,2,2), heights=c(1,1,1))
   par( mar=c(0,5,0,2), oma=c(7,3,1.5,1.5),las=1,cex.lab=2,cex.axis=1.4)
-  ptsize <- 1.5
+  ptsize <- 2
   palette(c(rev(brewer.pal(4,"Set1")[1:2]),brewer.pal(4,"Set1")[3:4]))
   xlims=c(0,800)
   ylims=c(0,400)
   
   #-------------------
   #--- plot NPP vs. GPP
-  plotBy(dMass_c~GPP|T_treatment,data=growth.chamber,pch=16,xaxt="n",xlim=xlims,ylim=ylims,legend=F,
+  plotBy(dMass_c~GPP|T_treatment,data=growth.chamber,pch=16,xaxt="n",xlim=xlims,ylim=ylims,legend=F,cex=ptsize,
          ylab=expression(NPP[a]~(gC~fortnight^-1)),
          xlab=expression(GPP~(gC~fortnight^-1)))
   axis(1,labels=F,tcl=0.5)
@@ -261,7 +261,7 @@ plot_partitioning_time <- function(growth){
   
   #-------------------
   #--- plot Ra vs. GPP
-  plotBy(Ra~GPP|T_treatment,data=growth.chamber,pch=16,xaxt="n",legend=F,xlim=xlims,ylim=ylims,
+  plotBy(Ra~GPP|T_treatment,data=growth.chamber,pch=16,xaxt="n",legend=F,xlim=xlims,ylim=ylims,cex=ptsize,
          ylab=expression(R[a]~(gC~fortnight^-1)),
          xlab=expression(GPP~(gC~fortnight^-1)))
   axis(1,labels=F,tcl=0.5)
@@ -293,7 +293,7 @@ plot_partitioning_time <- function(growth){
   
   #-------------------
   #--- plot residual vs. GPP
-  plotBy(resid~GPP|T_treatment,data=growth.chamber,pch=16,xaxt="n",legend=F,xlim=xlims,ylim=ylims,
+  plotBy(resid~GPP|T_treatment,data=growth.chamber,pch=16,xaxt="n",legend=F,xlim=xlims,ylim=ylims,cex=ptsize,
          ylab=expression(Residual~(gC~fortnight^-1)),
          xlab=expression(GPP~(gC~fortnight^-1)))
   axis(1,labels=T,tcl=0.5)

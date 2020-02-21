@@ -32,14 +32,21 @@ plotsize <- function(output=T){
   vol <- getvol()
   vol$diam <- vol$diam/10      # convert to cm
   vol$height <- vol$height/100 # convert to m
-  vol$vol <- vol$vol/10000     # convert to m3
+  vol$vol <- vol$vol/1000000     # convert to m3
   
   size.m <- summaryBy(diam+height+vol~DateTime+T_treatment+Water_treatment,
                       data=subset(vol,Days_since_transplanting>0),FUN=c(mean,se))
   
   
   
-  
+  #------------------------------------------------------------------------------------------------------------
+  # why do diameter and height converge later in the experiment, but volume does not?
+  windows(80,50)
+  par(mfrow=c(1,2),cex.lab=2,mar=c(6,6,1,1))
+  plot(vol~diam,data=vol,col=T_treatment,pch=16)
+  legend("topleft",title="Treatment",pch=16,col=palette()[1:2],legend=c("Ambient","Warmed"),cex=1.5)
+  plot(vol~height,data=vol,col=T_treatment,pch=16)
+  #------------------------------------------------------------------------------------------------------------
   
   
   
@@ -89,7 +96,7 @@ plotsize <- function(output=T){
   abline(v=as.Date("2013-9-13"),lty=2)
   #text(x=as.Date("2013-9-13"),y=8.8,labels="Flux measurements begin",xpd=NA,cex=1.3)
   legend("topleft",pch=c(16,16,1,1),lty=c(1),col=c("#377EB8","#E41A1C"),seg.len=1.5,
-         legend=c("A-Wet","W-Wet","A-Dry","W-Dry"),bty="n",cex=1.2)
+         legend=c("A-Con","W-Con","A-Dry","W-Dry"),bty="n",cex=1.2)
   legend("bottomright","a",bty="n",inset=0.002,cex=1.2)
   
   
@@ -138,7 +145,8 @@ plotsize <- function(output=T){
   
   
   #- plot stem volume
-  plotBy(vol.mean~DateTime|T_treatment,data=subset(size.m,Water_treatment=="control"),pch=16,type="o",ylim=c(0,2),
+  plotBy(vol.mean~DateTime|T_treatment,data=subset(size.m,Water_treatment=="control"),pch=16,type="o",
+         ylim=c(0,0.02),
          xlim=xlims,
          xaxt="n",yaxt="n",xlab="",ylab="",legend=F)
   adderrorbars(x=subset(size.m,Water_treatment=="control")$DateTime,

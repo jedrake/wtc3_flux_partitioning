@@ -75,14 +75,14 @@ plot_fluxes_time_sum <- function(cue.day){
          ylim=c(0,100),add=T,legend=F)
   plotBy(Cgain.mean~Date_week|T_treatment,data=subset(cue.day.trt,Water_treatment=="drydown"),col=palette()[3:4],
          type="l",lwd=3,add=T,legend=F)
-  legend("topleft",legend=c("A-Wet","W-Wet","A-Dry","W-Dry"),fill=palette()[1:4],seg.len=3,cex=1.5)
+  legend("topleft",legend=c("A-Con","W-Con","A-Dry","W-Dry"),fill=palette()[1:4],seg.len=3,cex=1.5)
   legend("topright",letters[1],bty="n",cex=1.5)
   #---
   
   #- add experiment-wise sums
   xvals <- graphics::barplot(c(cue.sums.trt$Cgain.mean,cue.sums.dd.trt$Cgain.mean),ylim=c(0,7000),
                              col=c(palette()[1:2],palette()[1:4]),las=2,
-                             names.arg=c("A-Wet","W-Wet","A-Wet","W-Wet","A-Dry","W-Dry"))
+                             names.arg=c("A-Con","W-Con","A-Con","W-Con","A-Dry","W-Dry"))
   abline(v=2.5,lty=2)
   adderrorbars(x=xvals,y=c(cue.sums.trt$Cgain.mean,cue.sums.dd.trt$Cgain.mean),
                SE=c(cue.sums.trt$Cgain.se,cue.sums.dd.trt$Cgain.se),direction="updown")
@@ -131,7 +131,7 @@ plot_fluxes_time_sum <- function(cue.day){
   #- add experiment-wise sums
   xvals <- graphics::barplot(c(cue.sums.trt$Hloss.mean,cue.sums.dd.trt$Hloss.mean),ylim=c(0,2000),
                              col=c(palette()[1:2],palette()[1:4]),las=2,
-                             names.arg=c("A-Wet","W-Wet","A-Wet","W-Wet","A-Dry","W-Dry"))
+                             names.arg=c("A-Con","W-Con","A-Con","W-Con","A-Dry","W-Dry"))
   abline(v=2.5,lty=2)
   adderrorbars(x=xvals,y=c(cue.sums.trt$Hloss.mean,cue.sums.dd.trt$Hloss.mean),
                SE=c(cue.sums.trt$Hloss.se,cue.sums.dd.trt$Hloss.se),direction="updown")

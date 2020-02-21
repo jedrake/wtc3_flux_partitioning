@@ -96,12 +96,14 @@ plot_soil_moisture_LWPpd <- function(){
   plot.new()
   plot.window(xlim=c(startdate,enddate),ylim=c(0,0.35))
   box()
-  title(xlab="",ylab=expression("Volumetric water content"~"("*m^3~m^-3*")"),cex.lab=2,outer=T,line=4,las=1,adj=0.8)
+  title(xlab="",ylab=expression("Volumetric water content"~~"("*m^3~m^-3*")"),cex.lab=2,outer=T,line=4,las=1,adj=0.8)
   title(xlab="",ylab=expression(Psi[pd]~"("*MPa*")"),cex.lab=2,outer=T,line=4,las=1,adj=0.05)
   
   axis(side=2,labels=T,cex.axis=1.5,tck=0.025,las=2,at=c(0,0.1,0.2,0.3))
   axis(side=4,labels=T,cex.axis=1.5,tck=0.025,las=2,at=c(0,0.1,0.2,0.3))
   legend("topright",legend=letters[1],bty="n",cex=1.4)
+  legend("bottomright",legend="0.1-m-depth",bty="n",cex=1.4)
+  
   for (i in 1:length(dat1.list)){
     dat1 <- dat1.list[[i]]
     #plot surface
@@ -110,7 +112,7 @@ plot_soil_moisture_LWPpd <- function(){
     abline(h=0.05,lty=2,lwd=2)
     points(VW_Avg.1..mean~date,data=dat1,pch=21,col=cols[i],bg=bgcols[i],add=T,cex=1.4,type="b",lty=i)
   }
-  legend("top",legend=c("A-Wet","A-Dry","W-Wet","W-Dry"),ncol=2,pch=c(21),
+  legend("top",legend=c("A-Con","A-Dry","W-Con","W-Dry"),ncol=2,pch=c(21),
          seg.len=3,bty="n",lwd=2,pt.lwd=1,col=c("blue","blue","red","red"),
          pt.bg=c("blue","white","red","white"),pt.cex=1.5,cex=1.2,lty=c(1,2,1,2))
   axis.Date(side=1,at=seq.Date(from=as.Date("2013-12-1"),to=as.Date("2014-6-1"),by="month"),tcl=0.5,cex.axis=1.3,
@@ -119,6 +121,8 @@ plot_soil_moisture_LWPpd <- function(){
   plot.new()
   plot.window(xlim=c(startdate,enddate),ylim=c(0,0.35))
   legend("topright",legend=letters[2],bty="n",cex=1.4)
+  legend("bottomright",legend="0.5-m-depth",bty="n",cex=1.4)
+  
   box()
   axis(side=2,labels=T,cex.axis=1.5,tck=0.025,las=2,at=c(0,0.1,0.2,0.3))
   axis(side=4,labels=T,cex.axis=1.5,tck=0.025,las=2,at=c(0,0.1,0.2,0.3))
@@ -138,6 +142,8 @@ plot_soil_moisture_LWPpd <- function(){
   plot.new()
   plot.window(xlim=c(startdate,enddate),ylim=c(0,0.35))
   legend("topright",legend=letters[3],bty="n",cex=1.4)
+  legend("bottomright",legend="1-m-depth",bty="n",cex=1.4)
+  
   box()
   axis(side=2,labels=T,cex.axis=1.5,tck=0.025,las=2,at=c(0,0.1,0.2,0.3))
   axis(side=4,labels=T,cex.axis=1.5,tck=0.025,las=2,at=c(0,0.1,0.2,0.3))

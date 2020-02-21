@@ -8,6 +8,8 @@ plot_respiration_growth_maintenence <- function(growth){
   gmr <- growth
   
   gmr$RtoW <- with(gmr,Ra/(totMass*0.47))
+  gmr$RtoG <- with(gmr,Ra/(dMass_c))
+  
   gmr$logy <- log10(gmr$RtoW)
   gmr$logx <- log10(gmr$RGR/1000) # convert to g from mg
   
@@ -30,6 +32,7 @@ plot_respiration_growth_maintenence <- function(growth){
   # Two separate dataframes, one for each treatment/
   amb_dfr <- data.frame(RGR = xval, T_treatment = "ambient")
   ele_dfr <- data.frame(RGR = xval, T_treatment = "elevated")
+  dfr_both <- data.frame(RGR = xval)
   
   model_amb <- lm(RtoW~RGR,data=subset(gmr,T_treatment=="ambient"))
   model_ele <- lm(RtoW~RGR,data=subset(gmr,T_treatment=="elevated"))
@@ -37,6 +40,9 @@ plot_respiration_growth_maintenence <- function(growth){
   # Predictions of the model using 'predict.lm'
   predamb <- as.data.frame(predict(model_amb, amb_dfr, interval = "confidence"))
   predele <- as.data.frame(predict(model_ele, ele_dfr, interval = "confidence"))
+  
+  predboth <- as.data.frame(predict(model4, dfr_both, interval = "confidence"))
+  
   
   # Plot. Set up the axis limits so that they start at 0, and go to the
   # maximum.
@@ -53,17 +59,20 @@ plot_respiration_growth_maintenence <- function(growth){
   plotBy(RtoW~RGR|T_treatment,data=subset(gmr,Water_treatment=="drydown"),ylim=c(0,0.2),xlim=c(0,20),pch=1,
          legend=F,add=T,cex=1.2)
   legend("topleft",pch=c(16,16,1,1),col=palette()[1:2],
-         legend=c("A-Wet","W-Wet","A-Dry","W-Dry"),bty="n",cex=1.2)
+         legend=c("A-Con","W-Con","A-Dry","W-Dry"),bty="n",cex=1.2)
   
   # Add the lines; the fit and lower and upper confidence intervals.
-  lines(xval, predamb$fit, col = palette()[1], lwd = 2)
-  lines(xval, predamb$lwr, col = palette()[1], lwd = 1, lty = 3)
-  lines(xval, predamb$upr, col = palette()[1], lwd = 1, lty = 3)
+  #lines(xval, predamb$fit, col = palette()[1], lwd = 2)
+  #lines(xval, predamb$lwr, col = palette()[1], lwd = 1, lty = 3)
+  #lines(xval, predamb$upr, col = palette()[1], lwd = 1, lty = 3)
   
-  lines(xval, predele$fit, col = palette()[2], lwd = 2)
-  lines(xval, predele$lwr, col = palette()[2], lwd = 1, lty = 3)
-  lines(xval, predele$upr, col = palette()[2], lwd = 1, lty = 3)
+  #lines(xval, predele$fit, col = palette()[2], lwd = 2)
+  #lines(xval, predele$lwr, col = palette()[2], lwd = 1, lty = 3)
+  #lines(xval, predele$upr, col = palette()[2], lwd = 1, lty = 3)
   
+  lines(xval, predboth$fit, col = "black", lwd = 2)
+  lines(xval, predboth$lwr, col = "black", lwd = 1, lty = 3)
+  lines(xval, predboth$upr, col = "black", lwd = 1, lty = 3)
   #legend("bottomright",legend=paste("y =",int,"+",slope,"x,","r2 =",r2,sep=" "),bty="n")
   
   dev.copy2pdf(file="output/R_growth_maintenance_linear.pdf")
@@ -108,7 +117,7 @@ plot_respiration_growth_maintenence <- function(growth){
   plotBy(logy~logx|T_treatment,data=subset(gmr,Water_treatment=="drydown"),pch=1,
           legend=F,add=T,cex=1.2)
   legend("topleft",pch=c(16,16,1,1),col=palette()[1:2],
-          legend=c("A-Wet","W-Wet","A-Dry","W-Dry"),bty="n",cex=1.2)
+          legend=c("A-Con","W-Con","A-Dry","W-Dry"),bty="n",cex=1.2)
   
   # Add the lines; the fit and lower and upper confidence intervals.
   lines(xval, predamb$fit, col = palette()[1], lwd = 2)
